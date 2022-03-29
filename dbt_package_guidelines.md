@@ -1,4 +1,4 @@
-# dbt Package Style Guidelines
+# Fivetran dbt Package Style Guidelines
 - [YAML Style Guidelines](#yaml-style-guidelines)
 - [dbt project Variables](#variables)
 - [Jinja Formatting](#jinja-formatting)

@@ -1,4 +1,4 @@
-# Fivetran dbt Style Guidelines
+# Fivetran dbt SQL Style Guidelines
 - [General Guidelines](#general-guidelines)
 - [SQL Style Guidelines](#sql-style-guidelines)
     - [Formatting](#formatting)
