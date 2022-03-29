@@ -9,7 +9,7 @@
 
 # General Guidelines
 - **Optimize for maintainability, robustness and computational efficiency**<br>
-Think of future you and any other developer that has to maintain your code in the future, do not optimize for less lines of code if you are sacrificing the ease of understanding your code. Newlines are cheap, time is expensive.
+Think of future you and any other developer that has to maintain your code in the future, do not optimize for less lines of code if you are sacrificing the ease of understanding your code. Newlines are cheap, time is expensive. 
 
 - **Lowercase code**<br>
 This is the general rule for all code including CTE names, aggregation functions, query clauses (e.g. select, from, where, group by, etc).
@@ -21,11 +21,11 @@ This is the general rule for all code including CTE names, aggregation functions
 # SQL Style Guidelines
 
 ## Formatting
-- **Tabbing is preferred. One tab is 4 spaces** (??)
+- **Tabbing is preferred. One tab is 4 spaces**
 
-- **Queries should be no more than 150(??) characters wide**
+- **Queries should be no more than 150 characters wide**
 
-- **Use leading commas** (??) - since we use leading commas for jinja notation
+- **Use trailing commas**
 
 ## General SQL Syntax
 
@@ -116,9 +116,9 @@ with orders as (
 
     select *
     from {{ ref('int_orders') }}
-), 
-
-customers as (
+),  
+ 
+customers as ( 
     
     select * 
     from {{ vars('customers') }}

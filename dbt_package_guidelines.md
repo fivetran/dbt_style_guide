@@ -3,7 +3,7 @@
 - [dbt project Variables](#variables)
 - [Jinja Formatting](#jinja-formatting)
 
-## Yaml Style Guidelines
+## Yaml Style Guidelines 
 
 ### Formatting
 - Indents should be 2 spaces
@@ -22,7 +22,7 @@ sources:
     schema: "{{ var('google_play_schema', 'google_play') }}"
     database: "{% if target.type != 'spark'%}{{ var('google_play_database', target.database) }}{% endif %}"
     loader: Fivetran
-    loaded_at_field: _fivetran_synced
+    loaded_at_field: _fivetran_synced 
 
     tables:
       - name: stats_installs_app_version
