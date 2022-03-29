@@ -108,7 +108,7 @@ from orders
 - **Newlines**
     - Add newline after closing `)` or before declaring the next CTE
     - Add newline after starting `(`
-- Start `on`, and if applicable `and`, statements on next line
+- Start "join on" statements (including `on`, `and` and `or`) on next line 
 - All `ref`s and `var`s should be referenced at the top of the model's file
 ```sql
 /* Best Practice */
@@ -130,6 +130,7 @@ customers as (
     from orders
     left join customers 
         on orders.customer_id = customers.id
+        and orders.date = customers.created_at
 )
 
 select *
@@ -138,7 +139,7 @@ from joined
 ## Joins
 
 - **No need to declare table aliases** unless joining to the same table multiple times
-- **Always prefix column name with table name/alias when selecting from a query that joins additional tables**
+- **Always prefix column name with table name/alias when selecting from a query that joins 2 or more tables**
 - **Use "join on" as opposed to "join using"**
 ```sql
 /* Best Practice */
