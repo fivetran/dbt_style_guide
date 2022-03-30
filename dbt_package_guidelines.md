@@ -1,9 +1,9 @@
 # Fivetran dbt Package Style Guidelines
-- [YAML Style Guidelines](#yaml-style-guidelines)
+- [YML Guidelines](#yml-style-guidelines)
 - [dbt project Variables](#variables)
 - [Jinja Formatting](#jinja-formatting)
 
-## Yaml Style Guidelines
+## YML Guidelines
 
 ### Formatting
 - Indents should be 2 spaces
@@ -11,10 +11,18 @@
 - Include column tests within their respective sections
 - Use identifiers
 
-### Source yml
+### YMLs
+- **Rule of thumb for freshness**<br>
+For tables that generally do not refresh often, no freshness specification is required but specifications can definitely be adjusted to longer periods such as monthly.<br><br>
+For tables with frequent refreshes (daily or multiple times a day) we recommend using the below:
+```yml
+    freshness:
+      warn_after: {count: 24, period: hour}
+      error_after: {count: 48, period: hour}
+```
 - **Use identifiers for table names, schema and database**
 ```yml
-
+# source.yml
 version: 2
 
 sources:
@@ -29,9 +37,9 @@ sources:
         identifier: "{{ var('stats_installs_app_version_identifier', 'stats_installs_app_version') }}"
 ```
 
-### Staging and Final Models yml
-**Example YAML**
+**Example YML**
 ```yml
+# stg.yml & final.yml
 models:
   - name: orders
     description: This table tracks all orders by day

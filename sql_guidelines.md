@@ -21,12 +21,39 @@ This is the general rule for all code including CTE names, aggregation functions
 # SQL Style Guidelines
 
 ## Formatting
-- **Tabbing is preferred. One tab is 4 spaces** (??)
+- **Tabbing is preferred. One tab is 4 spaces.**
 
-- **Queries should be no more than 150(??) characters wide**
+- **Use trailing commas** 
 
-- **Use leading commas** (??) - since we use leading commas for jinja notation
+- **Queries should be no more than 150 characters wide**<br>
+If any line in the query exceeds 150 characters, there are a couple of things to try:
+    - Continuing operations/statements on the next line, leading with the operator and a tab to indicate continuation
+    - Breaking up components of functions such that each variable input has its own line
+    - Adhering to guidelines pertaining to style alignment below
 
+```sql
+/* Best Practice */
+/* Example 1 */
+select
+    sum(lifetime_order_total) * .3
+        + sum(number_of_orders) * .1
+        + sum(visits_last_30_days) * .1
+        + sum(number_of_referrals_last_30_days) * .2
+        + sum(number_of_referrals_lifetime) * .1
+        + sum(number_of_items_purchased_over_100) * .1
+        + sum(number_of_really_really_really_really_really_really_expensive_items) * .1
+    as lifetime_value
+from a_lot_of_customer_data
+
+/* Example 2 */
+select
+    case 
+        when this_really_realllllllllllllllllllllllllllllllllllllllllly_longggggggggggggg
+            then this_realllllllllllllllllllllllllllllllly_long_then_statement
+    end as super_long_statements
+from statements
+/*
+```
 ## General SQL Syntax
 
 - **Use cross database compatible syntax**
