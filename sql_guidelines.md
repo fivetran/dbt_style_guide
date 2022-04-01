@@ -21,7 +21,7 @@ This is the general rule for all code including CTE names, aggregation functions
 # SQL Style Guidelines
 
 ## Formatting
-- **Tabbing is preferred. One tab is 4 spaces.**
+- **Tabbing is preferred; one tab is 4 spaces**
 
 - **Use trailing commas** 
 
