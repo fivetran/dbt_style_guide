@@ -149,9 +149,9 @@ customers as (
     
     select * 
     from {{ vars('customers') }}
-)
+),
 
-, joined as (
+joined as (
     
     select *
     from orders
