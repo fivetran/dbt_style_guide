@@ -59,7 +59,7 @@ from statements
 - **Use cross database compatible syntax**
     - Use `coalesce` instead of `iffnull` or `nvl`
     - Use `case when` instead of `iff` or `if`
-    - Use `column is null` and `column is not null` rather than `isnull` functions
+    - Use `column is null` instead of `isnull` functions
 
 - **Use the most performant approach**
     - Use `union all` instead of `union` unless de-duping is necessary
@@ -98,7 +98,9 @@ where order_date >= '2021-01-01' and
     order_date <= '2021-03-31'
 ```
 
-- **Use "not" for BOOLEAN statements**
+- **Use `not` for BOOLEAN statements**
+    - Use `not(column is null)` instead of `column is not null`
+    - Use `not is_deleted` instead of `is_deleted = false` or `is_deleted is not true`
 ```sql
 /* Best Practice */
 select *
