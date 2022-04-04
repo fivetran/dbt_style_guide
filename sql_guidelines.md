@@ -114,8 +114,9 @@ where is_deleted = false
 ```
 
 - **Aliases**
-    - Always explicitly use 'as' when defining aliases for columns, aggregates and tables
+    - Always explicitly use `as` when defining aliases for columns, aggregates and tables
     - Never use reserved words as aliases
+    - **No need to declare table aliases** unless joining to the same table multiple times (see [Joins](#joins))
 ```sql
 /* Best Practice */
 /* Example 1 */
