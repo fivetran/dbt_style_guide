@@ -35,13 +35,13 @@ If any line in the query exceeds 150 characters, there are a couple of things to
 /* Best Practice */
 /* Example 1 */
 select
-    sum(lifetime_order_total) * .3
-        + sum(number_of_orders) * .1
-        + sum(visits_last_30_days) * .1
-        + sum(number_of_referrals_last_30_days) * .2
-        + sum(number_of_referrals_lifetime) * .1
-        + sum(number_of_items_purchased_over_100) * .1
-        + sum(number_of_really_really_really_really_really_really_expensive_items) * .1
+    sum(lifetime_order_total) * 0.3
+        + sum(number_of_orders) * 0.1
+        + sum(visits_last_30_days) * 0.1
+        + sum(number_of_referrals_last_30_days) * 0.2
+        + sum(number_of_referrals_lifetime) * 0.1
+        + sum(number_of_items_purchased_over_100) * 0.1
+        + sum(number_of_really_really_really_really_really_really_expensive_items) * 0.1
     as lifetime_value
 from a_lot_of_customer_data
 
