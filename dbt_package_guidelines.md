@@ -79,6 +79,8 @@ models:
 - Try to align `if`/`for` statements so that the resulting jinja will be seamlessly added during compile
     - Note: There will be exceptions for `for` loops inside of `if` statements
 - Use leading commas for `if`/`for` column selections
+- Don't worry about controlling the whitespacing of compiled SQL (with `{%-` and `-%}`)
+    - write clean raw dbt SQL
 ```sql
 /* Best Practice */
 /* Example 1 */

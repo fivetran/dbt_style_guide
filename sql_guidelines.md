@@ -35,13 +35,13 @@ If any line in the query exceeds 150 characters, there are a couple of things to
 /* Best Practice */
 /* Example 1 */
 select
-    sum(lifetime_order_total) * .3
-        + sum(number_of_orders) * .1
-        + sum(visits_last_30_days) * .1
-        + sum(number_of_referrals_last_30_days) * .2
-        + sum(number_of_referrals_lifetime) * .1
-        + sum(number_of_items_purchased_over_100) * .1
-        + sum(number_of_really_really_really_really_really_really_expensive_items) * .1
+    sum(lifetime_order_total) * 0.3
+        + sum(number_of_orders) * 0.1
+        + sum(visits_last_30_days) * 0.1
+        + sum(number_of_referrals_last_30_days) * 0.2
+        + sum(number_of_referrals_lifetime) * 0.1
+        + sum(number_of_items_purchased_over_100) * 0.1
+        + sum(number_of_really_really_really_really_really_really_expensive_items) * 0.1
     as lifetime_value
 from a_lot_of_customer_data
 
@@ -59,7 +59,7 @@ from statements
 - **Use cross database compatible syntax**
     - Use `coalesce` instead of `iffnull` or `nvl`
     - Use `case when` instead of `iff` or `if`
-    - Use `column is null` and `column is not null` rather than `isnull` functions
+    - Use `column is null` instead of `isnull` functions
 
 - **Use the most performant approach**
     - Use `union all` instead of `union` unless de-duping is necessary
@@ -98,7 +98,9 @@ where order_date >= '2021-01-01' and
     order_date <= '2021-03-31'
 ```
 
-- **Use "not" for BOOLEAN statements**
+- **Use `not` for BOOLEAN statements**
+    - Use `not(column is null)` instead of `column is not null`
+    - Use `not is_deleted` instead of `is_deleted = false` or `is_deleted is not true`
 ```sql
 /* Best Practice */
 select *
@@ -112,8 +114,9 @@ where is_deleted = false
 ```
 
 - **Aliases**
-    - Always explicitly use 'as' when defining aliases for columns, aggregates and tables
+    - Always explicitly use `as` when defining aliases for columns, aggregates and tables
     - Never use reserved words as aliases
+    - **No need to declare table aliases** unless joining to the same table multiple times (see [Joins](#joins))
 ```sql
 /* Best Practice */
 /* Example 1 */
