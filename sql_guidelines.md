@@ -60,6 +60,8 @@ from statements
     - Use `coalesce` instead of `iffnull` or `nvl`
     - Use `case when` instead of `iff` or `if`
     - Use `column is null` and `column is not null` rather than `isnull` functions
+    - Use `{{ dbt_utils.type_timestamp() }}` on any timestamp fields within staging models.
+        - This ensure downstream date functions will always succeed.
 
 - **Use the most performant approach**
     - Use `union all` instead of `union` unless de-duping is necessary
@@ -137,6 +139,7 @@ from orders
     - Add newline after starting `(`
 - Start "join on" statements (including `on`, `and` and `or`) on next line 
 - All `ref`s and `var`s should be referenced at the top of the model's file
+- If a comment is placed then it shows the sql below is important/complex enough that we want to draw attention to it. In these cases, be sure to include appropriate white space above and below the sql that relates to the comment.
 ```sql
 /* Best Practice */
 with orders as (
@@ -153,11 +156,19 @@ customers as (
 
 joined as (
     
-    select *
-    from orders
-    left join customers 
-        on orders.customer_id = customers.id
-        and orders.date = customers.created_at
+    select 
+        customers.id as customer_id,
+        customers.name as customer_name,
+
+        -- We need to apply the customer discount to all orders
+        (orders.amount * customers.discount) as total_order_spend
+
+        orders.quantity as order_quantity,
+        orders.created_at
+    from customers
+    left join orders 
+        on customers.customer_id = orders.id
+        and customers.date = orders.created_at
 )
 
 select *
