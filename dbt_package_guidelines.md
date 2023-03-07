@@ -79,6 +79,8 @@ models:
 - Try to align `if`/`for` statements so that the resulting jinja will be seamlessly added during compile
     - Note: There will be exceptions for `for` loops inside of `if` statements
 - Use leading commas for `if`/`for` column selections
+- Ensure you do not a include whitespace buffer when using jinja operations (`for`,`if`, `set`, `execute`, etc.)
+  - However, there is an exception if a comment is used to introduce the jinja. This shows the logic is important/complex enough that we want to draw attention to it.
 ```sql
 /* Best Practice */
 /* Example 1 */
@@ -87,9 +89,13 @@ from {{ ref('orders') }}
 
 /* Example 2 */
 select 
-    *,
+    *
+
+    -- We are iterating through the data columns in order for this to be a more dynamic operation.
     {% for col in data_columns if col.name|lower not in ['col1', 'col2'] %}
     , {{ col.name }}
+    {% endfor %}
+
 from orders
 
 /* Example 3 */
@@ -103,9 +109,11 @@ left join subscriptions
 /* Anti-pattern */
 /* Example 1 */
 select 
-    *,
+    *
+    -- We are iterating through the data columns in order for this to be a more dynamic operation.
     {% for col in data_columns if col.name|lower not in ['col1', 'col2'] %}
         , {{ col.name }}
+    {% endfor %}
 from orders
 
 /* Example 2 */
